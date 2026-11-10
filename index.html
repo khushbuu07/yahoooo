@@ -1019,7 +1019,7 @@ footer{text-align:center;padding:50px 20px;color:#bd7392;font-style:italic}
  <div class="kicker">A letter from my heart</div>
  <h2>Dear Bubu…</h2>
  <p class="intro">Some feelings are too big for words, but I'm going to try. ♡</p>
- <div class="countdown" aria-label="Birthday countdown">
+ <div class="countdown" id="countdown" aria-label="Birthday countdown">
   <div class="time"><b id="days">0</b><small>Days</small></div>
   <div class="time"><b id="hours">0</b><small>Hours</small></div>
   <div class="time"><b id="minutes">0</b><small>Minutes</small></div>
@@ -1395,11 +1395,13 @@ function updateCountdown(){
  const minutesEl = document.getElementById("minutes");
  const secondsEl = document.getElementById("seconds");
 
- if (!countdownEl || !daysEl || !hoursEl || !minutesEl || !secondsEl) return;
+ if (!daysEl || !hoursEl || !minutesEl || !secondsEl) return;
 
  const diff=target-Date.now();
  if(diff<=0){
-  countdownEl.innerHTML="<div class=\"time\"><b>IT'S YOUR</b><small>BIRTHDAY</small></div>";
+  if (countdownEl) {
+   countdownEl.innerHTML="<div class=\"time\"><b>IT'S YOUR</b><small>BIRTHDAY</small></div>";
+  }
   return;
  }
  daysEl.textContent=Math.floor(diff/86400000);
